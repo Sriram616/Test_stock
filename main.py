@@ -6,7 +6,7 @@ from stable_baselines3 import DQN
 # Load RL model once when app starts
 @st.cache(allow_output_mutation=True)
 def load_model():
-    model = DQN.load("dqn_stock_model.zip")
+    model = DQN.load("dqn_msft_model.zip")
     return model
 
 model = load_model()
@@ -39,4 +39,5 @@ obs = np.array([current_price], dtype=np.float32)
 action, _ = model.predict(obs, deterministic=True)
 
 actions = {0: "Hold", 1: "Buy", 2: "Sell"}
+
 st.write(f"RL Agent recommends to: **{actions[int(action)]}** at price ${current_price:.2f}")
